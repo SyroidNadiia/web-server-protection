@@ -1,12 +1,12 @@
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.ethereal.email",
-  port: 587,
-  secure: false,
+  host: "smtp.ukr.net",
+  port: 465,
+  secure: true,
   auth: {
-    user: "lorenz.wilkinson26@ethereal.email",
-    pass: "3E7sMkREVNQjsCB8zs",
+    user: "shcherbelova@ukr.net",
+    pass: "22965ira",
   },
 });
 
@@ -14,7 +14,7 @@ const { BASE_URL } = process.env;
 
 const sendEmail = async (email, verificationToken) => {
   const mailOptions = {
-    from: "nura_arh@ukr.net",
+    from: "shcherbelova@ukr.net",
     to: email,
     subject: "Verify your email",
     html: `<p>Click verify email ${BASE_URL}/api/auth/verify/${verificationToken}</p>`,

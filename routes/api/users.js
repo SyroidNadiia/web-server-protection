@@ -11,7 +11,6 @@ const db = mysql.createConnection({
   database: process.env.DB_DATABASE,
 });
 
-// const { users: ctrl } = require("../../controllers");
 const { validation, authentic } = require("../../middlewares");
 const { schemas } = require("../../models/user");
 const { ctrlWrapper } = require("../../helpers");
