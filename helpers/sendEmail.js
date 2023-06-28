@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 const { MAIL_PASSWORD } = process.env;
 
 const nodemailerConfig = {
-  host: "smtp.ukr.net",
+  host: "smtp.meta.ua",
   port: 465,
   secure: true,
   auth: {
