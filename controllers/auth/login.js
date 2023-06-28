@@ -4,13 +4,13 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../../models/user");
 const { increaseLoginAttempts } = require("../../utils/authUtils");
 const dotenv = require("dotenv");
-const sendEmail = require("../../helpers");
+const sendEmail = require("../../helpers/sendEmail");
 dotenv.config();
 
 const { SECRET_KEY } = process.env;
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, verificationToken } = req.body;
   const user = await User.findOne({ email });
   const passwordCompare = await bcrypt.compare(password, user.password);
 
@@ -19,8 +19,9 @@ const login = async (req, res) => {
     throw createError(401, `Email or password are wrong`);
   }
 
-  if (!user.verify) {
-    await sendEmail(user.email, user.verificationToken);
+  if (user.verify) {
+    await sendEmail(email, verificationToken);
+  } else {
     throw createError(401, `Letter of verify does not send`);
   }
 
