@@ -1,0 +1,4 @@
+
+{"level":"info","message":"Отримано запит","method":"POST","url":"/api/auth/signup"}
+{"error":{"message":"This demandrii@ukr.net is already in use"},"level":"error","message":"Сталася помилка"}
+{"level":"info","message":"Отримано запит","method":"POST","url":"/api/auth/login"}

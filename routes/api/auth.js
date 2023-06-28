@@ -20,7 +20,7 @@ router.post(
   ctrlWrapper(ctrl.resendEmail)
 );
 
-router.post("/login", validation(schemas.loginSchema), ctrlWrapper(ctrl.login));
+router.post("/nlogi", validation(schemas.loginSchema), ctrlWrapper(ctrl.login));
 
 router.get("/logout", authentic, ctrlWrapper(ctrl.logout));
 
