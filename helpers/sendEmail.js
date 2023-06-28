@@ -1,44 +1,31 @@
 const nodemailer = require("nodemailer");
 
-const transporter = nodemailer.createTransport(
-  {
+const sendEmail = async () => {
+  const { MAIL_PASSWORD } = process.env;
+
+  const nodemailerConfig = {
     host: "smtp.ukr.net",
     port: 465,
     secure: true,
     auth: {
       user: "shcherbelova@ukr.net",
-      pass: "22965ira",
+      pass: MAIL_PASSWORD,
     },
-  },
-  {
-    from: "Mailer Verify <shcherbelova@ukr.net>",
   }
-);
 
-const sendEmail = (message) => {
-  transporter.sendMail(message, (err, info) => {
-    if (err) return console.log(err);
-    console.log("Email sent: ", info);
-  });
-};
+  const transport = nodemailer.createTransport(nodemailerConfig);
 
-// const { BASE_URL } = process.env;
+  const email = {
+    to: "shcherbelova90@gmail.com",
+    from: "shcherbelova@ukr.net",
+    subject: "Test email",
+    html: "<p><srtong>TEST EMAIL</srtong></p>",
+  };
 
-// const sendEmail = async (email, verificationToken) => {
-//   const mailOptions = {
-//     from: "shcherbelova@ukr.net",
-//     to: email,
-//     subject: "Verify your email",
-//     html: `<p>Click verify email ${BASE_URL}/api/auth/verify/${verificationToken}</p>`,
-//   };
-
-//   transporter.sendMail(mailOptions, (err, info) => {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       console.log("Email sent: " + info.response);
-//     }
-//   });
-// };
+  transport
+    .sendMail(email)
+    .then(() => console.log("Email send success"))
+    .catch((error) => console.log(error.message));
+}
 
 module.exports = sendEmail;
