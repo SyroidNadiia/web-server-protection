@@ -1,10 +1,3 @@
-## GoIT Node.js Course Template Homework
-
-- branch hw02express - working with express
-- branch hw03mongo - working with MongoDB /create new BD, add,update,delete/
-- branch hw04auth - creating auth routes /signup,login,logout/
-- branch hw05avatar - using gravatar /created new avatar route/
-- branch hw06email - sending email with sendGrid, work with docker
 
 ### Команди:
 

@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../../models/user");
 const { increaseLoginAttempts } = require("../../utils/authUtils");
 const dotenv = require("dotenv");
+const sendEmail = require("../../helpers");
 dotenv.config();
 
 const { SECRET_KEY } = process.env;
@@ -19,6 +20,7 @@ const login = async (req, res) => {
   }
 
   if (!user.verify) {
+    await sendEmail(user.email, user.verificationToken);
     throw createError(401, `Letter of verify does not send`);
   }
 
